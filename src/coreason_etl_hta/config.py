@@ -31,11 +31,6 @@ class ScrapingConfig(BaseModel):
         ge=0,
         description="The maximum number of retry attempts for failed HTTP requests (502/503/504).",
     )
-    timeout: float = Field(
-        default=10.0,
-        ge=0.1,
-        description="The timeout in seconds for HTTP requests.",
-    )
 
 
 class InahtaConfig(BaseSettings):

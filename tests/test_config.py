@@ -25,7 +25,6 @@ def test_scraping_config_defaults() -> None:
     assert str(config.base_url) == "https://database.inahta.org/"
     assert config.crawl_delay == 1.0
     assert config.retry_limit == 3
-    assert config.timeout == 10.0
 
 
 def test_scraping_config_custom_values() -> None:
@@ -34,12 +33,10 @@ def test_scraping_config_custom_values() -> None:
         base_url="https://test.example.com/",
         crawl_delay=2.5,
         retry_limit=5,
-        timeout=15.0,
     )
     assert str(config.base_url) == "https://test.example.com/"
     assert config.crawl_delay == 2.5
     assert config.retry_limit == 5
-    assert config.timeout == 15.0
 
 
 def test_scraping_config_invalid_base_url() -> None:
@@ -58,14 +55,6 @@ def test_scraping_config_negative_retry_limit() -> None:
     """Test that ScrapingConfig raises ValidationError on negative retry limit."""
     with pytest.raises(ValidationError):
         ScrapingConfig(retry_limit=-1)
-
-
-def test_scraping_config_zero_timeout() -> None:
-    """Test that ScrapingConfig raises ValidationError on zero or negative timeout."""
-    with pytest.raises(ValidationError):
-        ScrapingConfig(timeout=0.0)
-    with pytest.raises(ValidationError):
-        ScrapingConfig(timeout=-1.0)
 
 
 def test_inahta_config_defaults() -> None:
