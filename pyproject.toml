@@ -22,10 +22,16 @@ dependencies = [
     "requests>=2.32.5",
     "urllib3>=2.6.3",
 ]
+
 license = { file = "LICENSE" }
 classifiers = [
     "License :: Other/Proprietary License",
     "Operating System :: OS Independent",
+]
+
+[tool.uv]
+override-dependencies = [
+    "dbt-extractor<0.6.0",
 ]
 
 [dependency-groups]
