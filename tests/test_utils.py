@@ -30,6 +30,24 @@ def test_logger_initialization() -> None:
     # assert (log_path / "app.log").exists()
 
 
+def test_logger_directory_creation() -> None:
+    """Test that logger creates directory when it does not exist."""
+    import importlib
+    from unittest.mock import patch
+
+    with (
+        patch("pathlib.Path.exists", return_value=False),
+        patch("pathlib.Path.mkdir") as mock_mkdir,
+        patch("loguru.logger.add"),
+    ):
+        # force module reload to hit the if not exist logic
+        import coreason_etl_hta.utils.logger
+
+        importlib.reload(coreason_etl_hta.utils.logger)
+
+        mock_mkdir.assert_called_once_with(parents=True, exist_ok=True)
+
+
 def test_logger_exports() -> None:
     """Test that logger is exported."""
     assert logger is not None
