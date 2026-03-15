@@ -8,7 +8,11 @@
 #
 # Source Code: https://github.com/CoReason-AI/coreason_etl_hta
 
-"""Configuration management for the coreason_etl_hta package."""
+"""Configuration management for the coreason_etl_hta package.
+
+This module defines the Pydantic configuration models (InahtaConfig, ScrapingConfig)
+which handle the INAHTA base URL, crawl delay, and retry limits.
+"""
 
 from pydantic import BaseModel, Field, HttpUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict

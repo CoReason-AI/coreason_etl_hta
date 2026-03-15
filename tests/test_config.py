@@ -14,6 +14,8 @@ import os
 from unittest import mock
 
 import pytest
+from hypothesis import given, settings
+from hypothesis import strategies as st
 from pydantic import ValidationError
 
 from coreason_etl_hta.config import InahtaConfig, ScrapingConfig
@@ -72,3 +74,35 @@ def test_inahta_config_env_vars() -> None:
     assert config.scraping.crawl_delay == 5.5
     assert config.scraping.retry_limit == 10
     assert str(config.scraping.base_url) == "https://database.inahta.org/"
+
+
+@settings(max_examples=50)
+@given(
+    crawl_delay=st.floats(min_value=0.0, max_value=100.0, allow_nan=False, allow_infinity=False),
+    retry_limit=st.integers(min_value=0, max_value=100),
+)
+def test_scraping_config_valid_properties(crawl_delay: float, retry_limit: int) -> None:
+    """Test that ScrapingConfig accepts valid generated properties."""
+    config = ScrapingConfig(crawl_delay=crawl_delay, retry_limit=retry_limit)
+    assert config.crawl_delay == crawl_delay
+    assert config.retry_limit == retry_limit
+
+
+@settings(max_examples=50)
+@given(
+    crawl_delay=st.floats(max_value=-0.0001, allow_nan=False, allow_infinity=False),
+)
+def test_scraping_config_invalid_crawl_delay(crawl_delay: float) -> None:
+    """Test that ScrapingConfig rejects negative crawl_delays."""
+    with pytest.raises(ValidationError):
+        ScrapingConfig(crawl_delay=crawl_delay)
+
+
+@settings(max_examples=50)
+@given(
+    retry_limit=st.integers(max_value=-1),
+)
+def test_scraping_config_invalid_retry_limit(retry_limit: int) -> None:
+    """Test that ScrapingConfig rejects negative retry_limits."""
+    with pytest.raises(ValidationError):
+        ScrapingConfig(retry_limit=retry_limit)
