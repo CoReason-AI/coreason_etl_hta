@@ -76,8 +76,8 @@ def test_inahta_config_env_vars() -> None:
     assert str(config.scraping.base_url) == "https://database.inahta.org/"
 
 
-@settings(max_examples=50)
-@given(
+@settings(max_examples=50)  # type: ignore[misc]
+@given(  # type: ignore[misc]
     crawl_delay=st.floats(min_value=0.0, max_value=100.0, allow_nan=False, allow_infinity=False),
     retry_limit=st.integers(min_value=0, max_value=100),
 )
@@ -88,8 +88,8 @@ def test_scraping_config_valid_properties(crawl_delay: float, retry_limit: int) 
     assert config.retry_limit == retry_limit
 
 
-@settings(max_examples=50)
-@given(
+@settings(max_examples=50)  # type: ignore[misc]
+@given(  # type: ignore[misc]
     crawl_delay=st.floats(max_value=-0.0001, allow_nan=False, allow_infinity=False),
 )
 def test_scraping_config_invalid_crawl_delay(crawl_delay: float) -> None:
@@ -98,8 +98,8 @@ def test_scraping_config_invalid_crawl_delay(crawl_delay: float) -> None:
         ScrapingConfig(crawl_delay=crawl_delay)
 
 
-@settings(max_examples=50)
-@given(
+@settings(max_examples=50)  # type: ignore[misc]
+@given(  # type: ignore[misc]
     retry_limit=st.integers(max_value=-1),
 )
 def test_scraping_config_invalid_retry_limit(retry_limit: int) -> None:
