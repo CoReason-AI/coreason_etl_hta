@@ -1,0 +1,5 @@
+feat: add architectural roadmap and verify project setup
+
+- Created roadmap.md decomposing the pipeline into atomic units.
+- Verified that Unit 1 (Project Setup, Dependencies, & Pydantic Configuration)
+  is fully implemented in pyproject.toml, config.py, and test_config.py.
