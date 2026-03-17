@@ -18,7 +18,7 @@ from hypothesis import given, settings
 from hypothesis import strategies as st
 from pydantic import ValidationError
 
-from coreason_etl_hta.config import InahtaConfig, ScrapingConfig
+from coreason_etl_hta.settings import InahtaConfig, ScrapingConfig
 
 
 def test_scraping_config_defaults() -> None:
