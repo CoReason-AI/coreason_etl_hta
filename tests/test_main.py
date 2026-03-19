@@ -67,6 +67,82 @@ def test_inahta_assessments_resource_generator(
     mock_identity.execute.assert_called_once_with([{"Title": "Report 1"}])
 
 
+@mock.patch("coreason_etl_hta.main.ScrapeInahtaPageTask")
+@mock.patch("coreason_etl_hta.main.IdentityResolutionTask")
+def test_inahta_assessments_resource_multiple_pages(
+    mock_identity_class: mock.MagicMock,
+    mock_scraper_class: mock.MagicMock,
+    config: InahtaConfig,
+) -> None:
+    """Test the resource correctly handles multiple pages where the last page has no next link."""
+    mock_scraper = mock_scraper_class.return_value
+    mock_identity = mock_identity_class.return_value
+
+    mock_scraper.execute.side_effect = [
+        ([{"Title": "Report 1"}], True),  # Page 1
+        ([{"Title": "Report 2"}], False),  # Page 2 (last page)
+    ]
+
+    mock_identity.execute.side_effect = [
+        [{"assessment_hash_id": "h1", "coreason_id": "u1", "raw_data": {"Title": "Report 1"}}],
+        [{"assessment_hash_id": "h2", "coreason_id": "u2", "raw_data": {"Title": "Report 2"}}],
+    ]
+
+    results = list(inahta_assessments_resource(config))
+
+    assert len(results) == 2
+    assert results[0]["assessment_hash_id"] == "h1"
+    assert results[1]["assessment_hash_id"] == "h2"
+
+    assert mock_scraper.execute.call_count == 2
+    mock_scraper.execute.assert_any_call(1)
+    mock_scraper.execute.assert_any_call(2)
+
+
+@mock.patch("coreason_etl_hta.main.ScrapeInahtaPageTask")
+@mock.patch("coreason_etl_hta.main.IdentityResolutionTask")
+def test_inahta_assessments_resource_empty_but_has_next(
+    mock_identity_class: mock.MagicMock,
+    mock_scraper_class: mock.MagicMock,
+    config: InahtaConfig,
+) -> None:
+    """Test the resource breaks the loop if an empty list is returned despite has_next=True."""
+    mock_scraper = mock_scraper_class.return_value
+    mock_identity = mock_identity_class.return_value
+
+    mock_scraper.execute.side_effect = [
+        ([{"Title": "Report 1"}], True),  # Page 1
+        ([], True),  # Page 2: empty list but has_next is erroneously True
+    ]
+
+    mock_identity.execute.side_effect = [
+        [{"assessment_hash_id": "h1", "coreason_id": "u1", "raw_data": {"Title": "Report 1"}}],
+    ]
+
+    results = list(inahta_assessments_resource(config))
+
+    assert len(results) == 1
+    assert results[0]["assessment_hash_id"] == "h1"
+
+    # Verify it stopped at page 2 instead of looping infinitely
+    assert mock_scraper.execute.call_count == 2
+    mock_identity.execute.assert_called_once()
+
+
+@mock.patch("coreason_etl_hta.main.ScrapeInahtaPageTask")
+def test_inahta_assessments_resource_exception_propagation(
+    mock_scraper_class: mock.MagicMock,
+    config: InahtaConfig,
+) -> None:
+    """Test that unexpected exceptions from dependencies bubble up."""
+    mock_scraper = mock_scraper_class.return_value
+
+    mock_scraper.execute.side_effect = Exception("Simulated fatal scraper failure")
+
+    with pytest.raises(Exception, match="Simulated fatal scraper failure"):
+        list(inahta_assessments_resource(config))
+
+
 @mock.patch("coreason_etl_hta.main.InahtaConfig")
 @mock.patch("coreason_etl_hta.main.ScrapeInahtaPageTask")
 @mock.patch("coreason_etl_hta.main.IdentityResolutionTask")
