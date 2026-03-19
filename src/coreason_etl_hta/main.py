@@ -25,7 +25,7 @@ from coreason_etl_hta.utils.logger import logger
 
 
 @dlt.resource(
-    name="inahta_assessments_raw",
+    name="coreason_etl_hta_bronze_inahta_assessments",
     write_disposition="merge",
     primary_key="assessment_hash_id",
     # max_table_nesting=0 ensures that nested raw_data dicts are saved intact as JSONB
