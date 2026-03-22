@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: coreason_etl_hta_silver_inahta_assessments
+    description: "Silver layer table containing parsed, cleaned, and hashed INAHTA metadata"
+    columns:
+      - name: coreason_id
+        description: "UUIDv5 computed entirely in Python via Polars. The unique identifier for the assessment."
+        tests:
+          - unique
+          - not_null
+      - name: assessment_hash_id
+        description: "Source ID pre-computed in Python."
+        tests:
+          - unique
+          - not_null
+      - name: content_hash
+        description: "Computed in dbt using md5(raw_data::text)."
+        tests:
+          - not_null
+      - name: title
+        description: "Full title of the HTA report."
+        tests:
+          - not_null
+      - name: agency_name
+        description: "Name of the agency (e.g., CADTH, NICE)."
+      - name: country
+        description: "Country of origin."
+      - name: publication_year
+        description: "Year of publication."
+      - name: assessment_type
+        description: "Type of the assessment."
+
+  - name: coreason_etl_hta_gold_inahta_global_coverage
+    description: "Aggregated HTA volume by country and year."
+    columns:
+      - name: country
+      - name: publication_year
+      - name: total_assessments
+
+  - name: coreason_etl_hta_gold_inahta_search_index
+    description: "Clean text-searchable view specifically designed for RAG ingestion."
+    columns:
+      - name: coreason_id
+        tests:
+          - unique
+          - not_null
+      - name: search_text
+        description: "Concatenated metadata payload for vector search."
+        tests:
+          - not_null
