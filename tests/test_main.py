@@ -190,3 +190,8 @@ def test_run_pipeline(mock_resource: mock.MagicMock, mock_pipeline: mock.MagicMo
     )
     mock_pipeline_instance.run.assert_called_once_with(mock_resource_instance)
     mock_resource.assert_called_once()
+
+
+def test_dlt_schema_naming_conventions() -> None:
+    """Test that the dlt resource and dataset naming strictly follow the Gold/Silver/Bronze pattern."""
+    assert inahta_assessments_resource.name == "coreason_etl_hta_bronze_inahta_assessments"

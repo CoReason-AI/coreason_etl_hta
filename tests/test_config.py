@@ -10,9 +10,6 @@
 
 """Tests for the configuration models."""
 
-import os
-from unittest import mock
-
 import pytest
 from hypothesis import given, settings
 from hypothesis import strategies as st
@@ -67,9 +64,10 @@ def test_inahta_config_defaults() -> None:
     assert config.scraping.crawl_delay == 1.0
 
 
-@mock.patch.dict(os.environ, {"INAHTA_SCRAPING__CRAWL_DELAY": "5.5", "INAHTA_SCRAPING__RETRY_LIMIT": "10"})
-def test_inahta_config_env_vars() -> None:
+def test_inahta_config_env_vars(monkeypatch: pytest.MonkeyPatch) -> None:
     """Test that InahtaConfig overrides defaults using environment variables."""
+    monkeypatch.setenv("INAHTA_SCRAPING__CRAWL_DELAY", "5.5")
+    monkeypatch.setenv("INAHTA_SCRAPING__RETRY_LIMIT", "10")
     config = InahtaConfig()
     assert config.scraping.crawl_delay == 5.5
     assert config.scraping.retry_limit == 10
@@ -112,3 +110,45 @@ def test_inahta_config_overrides() -> None:
     """Test that InahtaConfig handles override configurations effectively."""
     config = InahtaConfig(scraping=ScrapingConfig(base_url="https://database.inahta.org/override"))
     assert str(config.scraping.base_url) == "https://database.inahta.org/override"
+
+
+def test_inahta_config_partial_env_vars(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Test that InahtaConfig merges env vars with defaults when only some are provided."""
+    monkeypatch.setenv("INAHTA_SCRAPING__RETRY_LIMIT", "15")
+    config = InahtaConfig()
+    # Explicitly set via env var
+    assert config.scraping.retry_limit == 15
+    # Should fallback to defaults
+    assert config.scraping.crawl_delay == 1.0
+    assert str(config.scraping.base_url) == "https://database.inahta.org/"
+
+
+def test_inahta_config_invalid_env_var_type(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Test that InahtaConfig raises ValidationError when env var cannot be cast to proper type."""
+    monkeypatch.setenv("INAHTA_SCRAPING__CRAWL_DELAY", "invalid_float")
+    with pytest.raises(ValidationError):
+        InahtaConfig()
+
+
+def test_inahta_config_insecure_url_override(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Test that an insecure HTTP URL is valid per HttpUrl type, depending on Pydantic rules."""
+    monkeypatch.setenv("INAHTA_SCRAPING__BASE_URL", "http://insecure-domain.org")
+    config = InahtaConfig()
+    assert str(config.scraping.base_url) == "http://insecure-domain.org/"
+
+
+def test_scraping_config_empty_url() -> None:
+    """Test that ScrapingConfig raises ValidationError for an empty URL string."""
+    with pytest.raises(ValidationError):
+        ScrapingConfig(base_url="")
+
+
+def test_scraping_config_type_coercion() -> None:
+    """Test that ScrapingConfig correctly coerces types from strings."""
+    config = ScrapingConfig(
+        base_url="https://database.inahta.org/",
+        crawl_delay="2.5",
+        retry_limit="5",
+    )
+    assert config.crawl_delay == 2.5
+    assert config.retry_limit == 5
