@@ -112,3 +112,45 @@ def test_inahta_config_overrides() -> None:
     """Test that InahtaConfig handles override configurations effectively."""
     config = InahtaConfig(scraping=ScrapingConfig(base_url="https://database.inahta.org/override"))
     assert str(config.scraping.base_url) == "https://database.inahta.org/override"
+
+
+@mock.patch.dict(os.environ, {"INAHTA_SCRAPING__RETRY_LIMIT": "15"})
+def test_inahta_config_partial_env_vars() -> None:
+    """Test that InahtaConfig merges env vars with defaults when only some are provided."""
+    config = InahtaConfig()
+    # Explicitly set via env var
+    assert config.scraping.retry_limit == 15
+    # Should fallback to defaults
+    assert config.scraping.crawl_delay == 1.0
+    assert str(config.scraping.base_url) == "https://database.inahta.org/"
+
+
+@mock.patch.dict(os.environ, {"INAHTA_SCRAPING__CRAWL_DELAY": "invalid_float"})
+def test_inahta_config_invalid_env_var_type() -> None:
+    """Test that InahtaConfig raises ValidationError when env var cannot be cast to proper type."""
+    with pytest.raises(ValidationError):
+        InahtaConfig()
+
+
+@mock.patch.dict(os.environ, {"INAHTA_SCRAPING__BASE_URL": "http://insecure-domain.org"})
+def test_inahta_config_insecure_url_override() -> None:
+    """Test that an insecure HTTP URL is valid per HttpUrl type, depending on Pydantic rules."""
+    config = InahtaConfig()
+    assert str(config.scraping.base_url) == "http://insecure-domain.org/"
+
+
+def test_scraping_config_empty_url() -> None:
+    """Test that ScrapingConfig raises ValidationError for an empty URL string."""
+    with pytest.raises(ValidationError):
+        ScrapingConfig(base_url="")
+
+
+def test_scraping_config_type_coercion() -> None:
+    """Test that ScrapingConfig correctly coerces types from strings."""
+    config = ScrapingConfig(
+        base_url="https://database.inahta.org/",
+        crawl_delay="2.5",
+        retry_limit="5",
+    )
+    assert config.crawl_delay == 2.5
+    assert config.retry_limit == 5
