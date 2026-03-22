@@ -10,7 +10,6 @@
 
 """Tests for the configuration models."""
 
-
 import pytest
 from hypothesis import given, settings
 from hypothesis import strategies as st
