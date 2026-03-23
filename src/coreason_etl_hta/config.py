@@ -45,6 +45,8 @@ class InahtaConfig(BaseSettings):
     model_config = SettingsConfigDict(
         env_prefix="INAHTA_",
         env_nested_delimiter="__",
+        env_file=".env",
+        extra="ignore",
     )
 
     scraping: ScrapingConfig = Field(default_factory=ScrapingConfig)

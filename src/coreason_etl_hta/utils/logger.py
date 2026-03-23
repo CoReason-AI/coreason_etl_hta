@@ -9,7 +9,6 @@
 # Source Code: https://github.com/CoReason-AI/coreason_etl_hta
 
 import sys
-from pathlib import Path
 
 from loguru import logger
 
@@ -30,12 +29,8 @@ logger.add(
     ),
 )
 
-# Ensure logs directory exists
-log_path = Path("logs")
-if not log_path.exists():
-    log_path.mkdir(parents=True, exist_ok=True)
-
 # Sink 2: File (JSON, Rotation, Retention)
+# Loguru automatically creates parent directories for file sinks
 logger.add(
     "logs/app.log",
     rotation="500 MB",

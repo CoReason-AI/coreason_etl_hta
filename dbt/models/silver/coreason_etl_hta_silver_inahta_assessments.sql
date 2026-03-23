@@ -38,13 +38,13 @@ select
 
     -- String cleaning: strip whitespace, newlines, and basic HTML artifacts.
     -- BTRIM removes spaces. REGEXP_REPLACE strips '\n' or HTML tags.
-    trim(regexp_replace(raw_title, '[\n\r]+|<[^>]*>', ' ', 'g')) as title,
-    trim(regexp_replace(raw_agency, '[\n\r]+|<[^>]*>', ' ', 'g')) as agency_name,
-    trim(regexp_replace(raw_country, '[\n\r]+|<[^>]*>', ' ', 'g')) as country,
+    {{ clean_text('raw_title') }} as title,
+    {{ clean_text('raw_agency') }} as agency_name,
+    {{ clean_text('raw_country') }} as country,
 
     -- Cast Year to integer (using NULLIF to handle empty strings gracefully)
     cast(nullif(trim(raw_year), '') as integer) as publication_year,
 
-    trim(regexp_replace(raw_type, '[\n\r]+|<[^>]*>', ' ', 'g')) as assessment_type
+    {{ clean_text('raw_type') }} as assessment_type
 
 from parsed
