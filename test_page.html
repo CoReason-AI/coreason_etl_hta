@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="wujICJGCivp9ZwvvZXOpfPWqifO1ceOjqc6FQKcU">
+
+    <title>HTA Database - Home</title>
+
+    <!-- Scripts -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163912524-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-163912524-1');
+
+    </script>
+    <script src="/js/app.js?id=6bb88cf8d728cfc5cb0fab9242216829" defer></script>
+        <script defer>
+        initAdvanced();
+
+        function initAdvanced() {
+            if (window.jQuery) {
+                $("#advancedLink").on('click', function(e) {
+                    e.preventDefault();
+                    let url = "https://database.inahta.org/search/advanced";
+                    if ($("#terms").val() !== "") {
+                        url += "?starting=" + $("#terms").val();
+                    }
+                    window.location.href = url;
+                });
+            } else {
+                setTimeout(function() {
+                    initAdvanced();
+                }, 50);
+            }
+        }
+
+    </script>
+            <script src="/js/search/results.js?id=f6e70f361f3dd1b77d272ca6a81c6fe4" defer></script>
+    <script src="/js/search/filters.js?id=5a836a04a0c14c27396819bbf62fb297" defer></script>
+    <script>
+        var checkedSession = 0
+    </script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+
+    <!-- Styles -->
+    <link href="/css/app.css?id=452a80af881b603e99665608a1ee4fa1" rel="stylesheet">
+    </head>
+    <body>
+                <div id="app">
+            <nav class="navbar navbar-expand-md navbar-red">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="https://database.inahta.org">
+                        <img class="logo" src="/img/db_logo.jpg" alt="INAHTA">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- Left Side Of Navbar -->
+
+                        <!-- Right Side Of Navbar -->
+                        <ul class="navbar-nav ml-auto">
+                            <!-- Authentication Links -->
+                                                        <li class="nav-item">
+                                <a class="nav-link" href="https://database.inahta.org/login">LOGIN</a>
+                            </li>
+                                                        <li class="nav-item">
+                                <a class="nav-link" href="https://database.inahta.org/register">REGISTER</a>
+                            </li>
+                                                                                    <li class="nav-item">
+                                <a class="nav-link" href="https://database.inahta.org/guide">USER GUIDE</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://database.inahta.org/faq">FAQ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://database.inahta.org/about">ABOUT</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://database.inahta.org/contact">CONTACT</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Search Bar -->
+                        <div class="card card-searchbar" >
+    <div class="card-body" style="padding-bottom: 0">
+        <form id="mainSearch" method="GET" action="https://database.inahta.org/search">
+            <div class="row row-bottom-margin">
+                <div class="col-md-2 offset-md-2">
+                    <select name="limit" id="search-limit" class="form-control" style="width:80%;float:right">
+                        <option value="" selected>All</option>
+                        <option value="title" >Title</option>
+                        <option value="mh" >MeSH Search</option>
+                        <option value="author" >Author</option>
+                        <option value="languages" >Language</option>
+                        <option value="keywords" >Keywords</option>
+                        <option value="abs" >Abstracts</option>
+                        <option value="status" >Status</option>
+                        <option value="record id" >Record ID</option>
+                        <option value="country" >Country</option>
+                        <option value="source" >Source</option>
+                    </select> 
+                </div>  
+                <div class="col-md-5">
+                    <input id="terms" class="form-control " name="terms" value="" type="search" required autofocus>
+                </div>
+                <div class="col-md-3">
+                    <button id="mainSearchSubmit" type="submit" class="btn btn-info" style="padding-bottom: 5px;">
+                        Search
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 offset-md-4">
+                    <a id="advancedLink" class="search-button" href="#">
+                        Advanced
+                    </a>
+                    <a class="search-button" href="https://database.inahta.org/mesh/explore">
+                        MeSH Browser
+                    </a>
+                </div>
+            </div>
+            <input id="search-client" name="client" value="user" type="hidden">
+        </form>
+    </div>
+</div>            
+            <!-- Main Content -->
+            <main class="py-4 main-content">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-2">
+                        <div class="card sidecard">
+    <div>
+        <ul class="list-unstyled components">
+                                                
+            <li class="border-bottom border-table card-list-main">
+                <a class="sidebar-link" href="https://database.inahta.org/search/history">Search History</a>
+                                (<a class="article_link" href="https://database.inahta.org/register">Register</a>)
+                            </li>
+                        <li class="border-botttom border-table card-list-main">
+                <a class="sidebar-link" href="https://database.inahta.org/mesh/explore">MeSH Browser</a>
+            </li>
+
+            
+                        <li class="border-bottom border-table card-list-main">
+    <a class="sidebar-link" href="#filtersList" data-toggle="collapse" data-target="#filtersList" aria-expanded="false" aria-controls="filtersList">Filters</a>
+    </li>
+<div class="collapse show" id="filtersList">
+    <li class="border-bottom border-table card-list-filter">
+        <a class="sidebar-link" href="#filterYear" data-toggle="collapse" data-target="#filterYear" aria-expanded="false" aria-controls="filterYear">Year</a>
+        <div id="filterYear" class="collapse ">
+            <ul class="inside filter">
+                                <li>
+                    <a href="#" id="filter-year-other" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Customize</a>
+                    <div class="dropdown-menu scrollable-menu" aria-labelledby="filter-year-other">
+                        <div class="scrollable-menu-content">
+                        <input name="filter-year-from" type="number" min="1980" max="2040" placeholder="from" value=""> To <input name="filter-year-to" type="number" min="1980" max="2040" placeholder="to" value="">
+                        </div>
+                        <a href="#" name="filter-year-other-apply">Apply</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </li>
+    <li class="border-bottom border-table card-list-filter">
+                <a class="sidebar-link" href="#filterPublication" data-toggle="collapse" data-target="#filterPublication" aria-expanded="false" aria-controls="filterPublication">Publication Type</a>
+        <div id="filterPublication" class="collapse ">
+            <ul class="inside filter">
+                <li>
+                    <a href="#" id="filter-publication-full-hta" class="">Full HTA</a>
+                </li>
+                <li>
+                    <a href="#" id="filter-publication-rapid-review" class="">Rapid Review</a>
+                </li>
+                <li>
+                    <a href="#" id="filter-publication-mini-hta" class="">Mini HTA</a>
+                </li>
+                <li>
+                    <a href="#" id="filter-publication-not-assigned" class="">Not Assigned</a>
+                </li>
+                <li>
+                    <a href="#" id="filter-publication-other" class="">Other</a>
+                </li>
+            </ul>
+        </div>
+    </li>
+    <li class="border-bottom border-table card-list-filter">
+                <a class="sidebar-link" href="#filterLanguage" data-toggle="collapse" data-target="#filterLanguage" aria-expanded="false" aria-controls="filterLanguage">Language</a>
+        <div id="filterLanguage" class="collapse ">
+            <ul class="inside filter">
+                                                                    <li>
+                    <a href="#" id="filter-languages-other" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Customize</a>
+                    <div class="dropdown-menu scrollable-menu" aria-labelledby="filter-languages-other">
+                        <div class="scrollable-menu-content">
+                            <input type="checkbox" name="filter-language-check"  value="Afrikaans" >Afrikaans<br>
+                            <input type="checkbox" name="filter-language-check"  value="Albanian" >Albanian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Arabic" >Arabic<br>
+                            <input type="checkbox" name="filter-language-check"  value="Armenian" >Armenian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Basque" >Basque<br>
+                            <input type="checkbox" name="filter-language-check"  value="Bengali">Bengali<br>
+                            <input type="checkbox" name="filter-language-check"  value="Bulgarian" >Bulgarian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Catalan" >Catalan<br>
+                            <input type="checkbox" name="filter-language-check"  value="Cambodian" >Cambodian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Chinese (Mandarin)" >Chinese (Mandarin)<br>
+                            <input type="checkbox" name="filter-language-check"  value="Chinese (Cantonese)" >Chinese (Cantonese)<br>
+                            <input type="checkbox" name="filter-language-check"  value="Croatian" >Croatian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Czech" >Czech<br>
+                            <input type="checkbox" name="filter-language-check"  value="Danish" >Danish<br>
+                            <input type="checkbox" name="filter-language-check"  value="Dutch" >Dutch<br>
+                            <input type="checkbox" name="filter-language-check"  value="English" >English<br>
+                            <input type="checkbox" name="filter-language-check"  value="Estonian" >Estonian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Fiji" >Fiji<br>
+                            <input type="checkbox" name="filter-language-check"  value="Finnish" >Finnish<br>
+                            <input type="checkbox" name="filter-language-check"  value="French" >French<br>
+                            <input type="checkbox" name="filter-language-check"  value="Georgian" >Georgian<br>
+                            <input type="checkbox" name="filter-language-check"  value="German" >German<br>
+                            <input type="checkbox" name="filter-language-check"  value="Greek" >Greek<br>
+                            <input type="checkbox" name="filter-language-check"  value="Gujarati" >Gujarati<br>
+                            <input type="checkbox" name="filter-language-check"  value="Hebrew" >Hebrew<br>
+                            <input type="checkbox" name="filter-language-check"  value="Hindi" >Hindi<br>
+                            <input type="checkbox" name="filter-language-check"  value="Hungarian" >Hungarian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Icelandic" >Icelandic<br>
+                            <input type="checkbox" name="filter-language-check"  value="Indonesian" >Indonesian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Irish" >Irish<br>
+                            <input type="checkbox" name="filter-language-check"  value="Italian" >Italian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Japanese">Japanese<br>
+                            <input type="checkbox" name="filter-language-check"  value="Javanese" >Javanese<br>
+                            <input type="checkbox" name="filter-language-check"  value="Korean" >Korean<br>
+                            <input type="checkbox" name="filter-language-check"  value="Latin" >Latin<br>
+                            <input type="checkbox" name="filter-language-check"  value="Latvian" >Latvian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Lithuanian" >Lithuanian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Macedonian" >Macedonian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Malay" >Malay<br>
+                            <input type="checkbox" name="filter-language-check"  value="Malayalam" >Malayalam<br>
+                            <input type="checkbox" name="filter-language-check"  value="Maltese" >Maltese<br>
+                            <input type="checkbox" name="filter-language-check"  value="Maori" >Maori<br>
+                            <input type="checkbox" name="filter-language-check"  value="Marathi" >Marathi<br>
+                            <input type="checkbox" name="filter-language-check"  value="Mongolian" >Mongolian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Nepali" >Nepali<br>
+                            <input type="checkbox" name="filter-language-check"  value="Norwegian" >Norwegian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Persian" >Persian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Polish" >Polish<br>
+                            <input type="checkbox" name="filter-language-check"  value="Portuguese" >Portuguese<br>
+                            <input type="checkbox" name="filter-language-check"  value="Punjabi" >Punjabi<br>
+                            <input type="checkbox" name="filter-language-check"  value="Quechua" >Quechua<br>
+                            <input type="checkbox" name="filter-language-check"  value="Romanian" >Romanian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Russian" >Russian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Samoan" >Samoan<br>
+                            <input type="checkbox" name="filter-language-check"  value="Serbian" >Serbian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Slovak" >Slovak<br>
+                            <input type="checkbox" name="filter-language-check"  value="Slovenian" >Slovenian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Spanish" >Spanish<br>
+                            <input type="checkbox" name="filter-language-check"  value="Swahili" >Swahili<br>
+                            <input type="checkbox" name="filter-language-check"  value="Swedish" >Swedish<br>
+                            <input type="checkbox" name="filter-language-check"  value="Tamil" >Tamil<br>
+                            <input type="checkbox" name="filter-language-check"  value="Tatar" >Tatar<br>
+                            <input type="checkbox" name="filter-language-check"  value="Telugu" >Telugu<br>
+                            <input type="checkbox" name="filter-language-check"  value="Thai" >Thai<br>
+                            <input type="checkbox" name="filter-language-check"  value="Tibetan" >Tibetan<br>
+                            <input type="checkbox" name="filter-language-check"  value="Tonga" >Tonga<br>
+                            <input type="checkbox" name="filter-language-check"  value="Turkish" >Turkish<br>
+                            <input type="checkbox" name="filter-language-check"  value="Ukrainian" >Ukrainian<br>
+                            <input type="checkbox" name="filter-language-check"  value="Urdu" >Urdu<br>
+                            <input type="checkbox" name="filter-language-check"  value="Uzbek" >Uzbek<br>
+                            <input type="checkbox" name="filter-language-check"  value="Vietnamese" >Vietnamese<br>
+                            <input type="checkbox" name="filter-language-check"  value="Welsh" >Welsh<br>
+                            <input type="checkbox" name="filter-language-check"  value="Xhosa" >Xhosa<br>
+                        </div>
+                        <a href="#" name="filter-language-other-apply">Apply</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </li>
+    <li class="border-bottom border-table card-list-filter">
+                <a class="sidebar-link" href="#filterStatus" data-toggle="collapse" data-target="#filterStatus" aria-expanded="false" aria-controls="filterStatus">Project Status</a>
+        <div id="filterStatus" class="collapse ">
+            <ul class="inside filter">
+                <li>
+                    <a href="#" id="filter-status-completed" class="">Completed</a>
+                </li>
+                <li>
+                    <a href="#" id="filter-status-ongoing" class="">Ongoing</a>
+                </li>
+            </ul>
+        </div>
+    </li>
+    <li class="border-bottom border-table card-list-filter">
+                <a class="sidebar-link" href="#filterSource" data-toggle="collapse" data-target="#filterSource" aria-expanded="false" aria-controls="filterSource">Source</a>
+        <div id="filterSource" class="collapse ">
+            <ul class="inside filter">
+                                                                    <li>
+                    <a href="#" id="filter-source-other" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Customize</a>
+                    <div class="dropdown-menu scrollable-menu" aria-labelledby="filter-source-other">
+                        <div class="scrollable-menu-content">
+                                                        <input type="checkbox" name="filter-publisher-check" value="Adelaide Health Technology Assessment" >Adelaide Health Technology Assessment<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Agence d&#039;évaluation des technologies et des modes d&#039;intervention en santé" >Agence d&#039;évaluation des technologies et des modes d&#039;intervention en santé<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Agencia de Evaluacion de Tecnologias Sanitarias" >Agencia de Evaluacion de Tecnologias Sanitarias<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Agència de Qualitat i Avaluació Sanitàries de Catalunya (AQuAS)" >Agència de Qualitat i Avaluació Sanitàries de Catalunya (AQuAS)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Agencia de Qualitat i Avaluacio Sanitries de Catalunya" >Agencia de Qualitat i Avaluacio Sanitries de Catalunya<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Agency for Care Effectiveness (ACE)" >Agency for Care Effectiveness (ACE)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Agency for Health Technology Assessment and Tariff System" >Agency for Health Technology Assessment and Tariff System<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Agency for Healthcare Research and Quality" >Agency for Healthcare Research and Quality<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Agency of Health Technology Assessment of Uruguay" >Agency of Health Technology Assessment of Uruguay<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Agenzia Sanitaria e Sociale Regionale (Regional Agency for Health and Social Care)" >Agenzia Sanitaria e Sociale Regionale (Regional Agency for Health and Social Care)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="All Wales Medicines Strategy Group" >All Wales Medicines Strategy Group<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Andalusian Health Technology Assessment Area" >Andalusian Health Technology Assessment Area<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Australian Health Technology Advisory Committee" >Australian Health Technology Advisory Committee<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Australian Safety and Efficacy Register of New Interventional Procedures-Surgical" >Australian Safety and Efficacy Register of New Interventional Procedures-Surgical<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Austrian Institute for Health Technology Assessment" >Austrian Institute for Health Technology Assessment<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Basque Office for Health Technology Assessment" >Basque Office for Health Technology Assessment<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Belgian Health Care Knowledge Centre" >Belgian Health Care Knowledge Centre<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="BlueCross BlueShield Association" >BlueCross BlueShield Association<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="British Columbia Office of Health Technology Assessment" >British Columbia Office of Health Technology Assessment<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Canada’s Drug Agency (CDA-AMC)" >Canada’s Drug Agency (CDA-AMC)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Canadian Agency for Drugs and Technologies in Health" >Canadian Agency for Drugs and Technologies in Health<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Canadian Coordinating Office for Health Technology Assessment" >Canadian Coordinating Office for Health Technology Assessment<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Canadian Task Force on Preventive Health Care" >Canadian Task Force on Preventive Health Care<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Canary Health Service" >Canary Health Service<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Cellule Innovation of the AP-HP" >Cellule Innovation of the AP-HP<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Center for Drug Evaluation" >Center for Drug Evaluation<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Center for Medical Technology Assessment" >Center for Medical Technology Assessment<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Center for Outcomes Research and Economic Evaluation for Health" >Center for Outcomes Research and Economic Evaluation for Health<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Centre for Clinical Effectiveness" >Centre for Clinical Effectiveness<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Centre for Reviews and Dissemination" >Centre for Reviews and Dissemination<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Centre for Technology Assessment at the Swiss Science and Technology Council" >Centre for Technology Assessment at the Swiss Science and Technology Council<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Centre Hospitalier de l&#039;Universite de Montreal" >Centre Hospitalier de l&#039;Universite de Montreal<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Centre intégré universitaire de santé et de services sociaux de la Capitale-Nationale" >Centre intégré universitaire de santé et de services sociaux de la Capitale-Nationale<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Committee for New Health Technology Assessment" >Committee for New Health Technology Assessment<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Conseil d&#039;Evaluation des Technologies de la Santé du Québec" >Conseil d&#039;Evaluation des Technologies de la Santé du Québec<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Coordenação-Geral de Fomento à Pesquisa e Avaliação de Tecnologias em Saúde, Departamento de Ciência e Tecnologia" >Coordenação-Geral de Fomento à Pesquisa e Avaliação de Tecnologias em Saúde, Departamento de Ciência e Tecnologia<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Danish Centre for Evaluation and Health Technology Assessment" >Danish Centre for Evaluation and Health Technology Assessment<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Danish Healthcare Quality Institute" >Danish Healthcare Quality Institute<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Danish Institute for Health Services Research" >Danish Institute for Health Services Research<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="ECRI Institute" >ECRI Institute<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="European Network for Health Technology Assessment" >European Network for Health Technology Assessment<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Finnish Coordinating Center for Health Technology Assessment" >Finnish Coordinating Center for Health Technology Assessment<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Finnish Coordinating Center for Health Technology Assessment" >Finnish Coordinating Center for Health Technology Assessment<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Fondazione Policlinico Universitario Agostino Gemelli IRCCS, Università Cattolica del Sacro Cuore" >Fondazione Policlinico Universitario Agostino Gemelli IRCCS, Università Cattolica del Sacro Cuore<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="German Agency for HTA at the German Institute for Medical Documentation and Information" >German Agency for HTA at the German Institute for Medical Documentation and Information<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Gesundheit Osterreich GmbH" >Gesundheit Osterreich GmbH<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Hannover Medical School, Medizinische Hochschule Hannover" >Hannover Medical School, Medizinische Hochschule Hannover<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Haute Autorité de Santé" >Haute Autorité de Santé<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="HAYES, Inc." >HAYES, Inc.<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Health Council of the Netherlands Gezondheidsraad" >Health Council of the Netherlands Gezondheidsraad<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Health Information and Quality Authority (HIQA)" >Health Information and Quality Authority (HIQA)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Health Intervention and Technology Assessment Program " >Health Intervention and Technology Assessment Program <br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Health Quality Ontario" >Health Quality Ontario<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Health Sciences Institute in Aragon (IACS)" >Health Sciences Institute in Aragon (IACS)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Health Services Assessment Collaboration" >Health Services Assessment Collaboration<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Health Services Utilization and Research Commission" >Health Services Utilization and Research Commission<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Health Technology Advisory Committee" >Health Technology Advisory Committee<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Health Technology and Policy Unit" >Health Technology and Policy Unit<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Health Technology Assessment Section, Ministry of Health Malaysia" >Health Technology Assessment Section, Ministry of Health Malaysia<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Health Technology Board for Scotland" >Health Technology Board for Scotland<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Health Technology Reference Group" >Health Technology Reference Group<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Health Technology Wales" >Health Technology Wales<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="HTA Region Stockholm" >HTA Region Stockholm<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="HTA South" >HTA South<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="HTA Unit, University of Calgary" >HTA Unit, University of Calgary<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Institut national d&#039;excellence en sante et en services sociaux" >Institut national d&#039;excellence en sante et en services sociaux<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Institut universitaire de cardiologie et de pneumologie de Québec – Université Laval (IUCPQ-ULaval)" >Institut universitaire de cardiologie et de pneumologie de Québec – Université Laval (IUCPQ-ULaval)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Institute for Clinical and Economic Review" >Institute for Clinical and Economic Review<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Institute for Clinical Effectiveness and Health Policy" >Institute for Clinical Effectiveness and Health Policy<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Institute for Clinical Evaluative Sciences" >Institute for Clinical Evaluative Sciences<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Institute for Clinical Systems Improvement" >Institute for Clinical Systems Improvement<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Institute for Quality and Efficiency in Health Care (IQWiG)" >Institute for Quality and Efficiency in Health Care (IQWiG)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Institute of Applied Health Sciences" >Institute of Applied Health Sciences<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Institute of Health Economics" >Institute of Health Economics<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Institute of Health Economics" >Institute of Health Economics<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Institute of Health Technology Assessment and Research (IETSI)" >Institute of Health Technology Assessment and Research (IETSI)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Institute of Technology Assessment" >Institute of Technology Assessment<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Israel Center for Technology Assessment in Health Care" >Israel Center for Technology Assessment in Health Care<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="L&#039;Agence Nationale d&#039;Accreditation d&#039;Evaluation en Santé" >L&#039;Agence Nationale d&#039;Accreditation d&#039;Evaluation en Santé<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Ludwig Boltzmann Institute for Health Technology Assessment" >Ludwig Boltzmann Institute for Health Technology Assessment<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Malaysian Health Technology Assessment" >Malaysian Health Technology Assessment<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Malaysian Health Technology Assessment Unit" >Malaysian Health Technology Assessment Unit<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Medical Advisory Secretariat" >Medical Advisory Secretariat<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Medical Services Advisory Committee" >Medical Services Advisory Committee<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Monash Business School, Monash University (MBS)" >Monash Business School, Monash University (MBS)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="National Authority for Assessment and Accreditation in Healthcare (INEAS)" >National Authority for Assessment and Accreditation in Healthcare (INEAS)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="National Committee for Technology Incorporation (CONITEC)" >National Committee for Technology Incorporation (CONITEC)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="National Evidence-based healthcare Collaborating Agency" >National Evidence-based healthcare Collaborating Agency<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="National Institute for Clinical Excellence" >National Institute for Clinical Excellence<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="National Institute for Health and Care Excellence" >National Institute for Health and Care Excellence<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="New Zealand Health Technology Assessment" >New Zealand Health Technology Assessment<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="New Zealand National Health Committee" >New Zealand National Health Committee<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="NIHR Health and Social Care Delivery Program" >NIHR Health and Social Care Delivery Program<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="NIHR Health Services and Delivery Research programme" >NIHR Health Services and Delivery Research programme<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="NIHR Health Technology Assessment programme" >NIHR Health Technology Assessment programme<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="NIHR Horizon Scanning Centre" >NIHR Horizon Scanning Centre<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="NIHR Public Health Research programme" >NIHR Public Health Research programme<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Norwegian Institute of Public Health" >Norwegian Institute of Public Health<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Norwegian Institute of Public Health" >Norwegian Institute of Public Health<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Norwegian Medical Products Agency" >Norwegian Medical Products Agency<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Ontario Health" >Ontario Health<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Penn Medicine Center for Evidence-based Practice" >Penn Medicine Center for Evidence-based Practice<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Quality Improvement Scotland" >Quality Improvement Scotland<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Regione Emilia Romagna" >Regione Emilia Romagna<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Scientific Advice Unit, avalia-t; The Galician Health Knowledge Agency (ACIS)" >Scientific Advice Unit, avalia-t; The Galician Health Knowledge Agency (ACIS)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Scottish Health Purchasing Information Centre" >Scottish Health Purchasing Information Centre<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Scottish Health Technologies Group" >Scottish Health Technologies Group<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Scottish Medicines Consortium (SMC)" >Scottish Medicines Consortium (SMC)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="State Health Care Accreditation Agency under the Ministry of Health of the Republic of Lithuania" >State Health Care Accreditation Agency under the Ministry of Health of the Republic of Lithuania<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Swedish Agency for Health Technology Assessment and Assessment of Social Services" >Swedish Agency for Health Technology Assessment and Assessment of Social Services<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Swedish Agency for Health Technology Assessment and Assessment of Social Services" >Swedish Agency for Health Technology Assessment and Assessment of Social Services<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Swiss Federal Office of Public Health (FOPH)" >Swiss Federal Office of Public Health (FOPH)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Technology Assessment at SickKids" >Technology Assessment at SickKids<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Technology Assessment Unit of the McGill University Health Centre (MUHC)" >Technology Assessment Unit of the McGill University Health Centre (MUHC)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="The Danish Health Technology Council" >The Danish Health Technology Council<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="The Federal Joint Committee" >The Federal Joint Committee<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="The HTA Center of the Stockholm County Council/Gotland" >The HTA Center of the Stockholm County Council/Gotland<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="The Italian National Agency for Regional Health Services (Agenas)" >The Italian National Agency for Regional Health Services (Agenas)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="The National Health Care Institute (ZIN, Zorginstituut Nederland)" >The National Health Care Institute (ZIN, Zorginstituut Nederland)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="The National Health Care Institute (Zorginstituut Nederland)" >The National Health Care Institute (Zorginstituut Nederland)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="The Netherlands Organisation for Health Research and Development" >The Netherlands Organisation for Health Research and Development<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="The Regional Health Technology Assessment Centre" >The Regional Health Technology Assessment Centre<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="TNO" >TNO<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="U. S. Congress. Office of Technology Assessment" >U. S. Congress. Office of Technology Assessment<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Unidad de Evaluacion de Tecnologias Sanitarias" >Unidad de Evaluacion de Tecnologias Sanitarias<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Unidad de Tecnologias de Salud" >Unidad de Tecnologias de Salud<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Unit of Health Economics and Technology Assessment in Health Care" >Unit of Health Economics and Technology Assessment in Health Care<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="University HealthSystem Consortium" >University HealthSystem Consortium<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="University of York" >University of York<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="VA Technology Assessment Program" >VA Technology Assessment Program<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Washington Singer Press" >Washington Singer Press<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Washington State Department of Labor and Industries (WSDLI)" >Washington State Department of Labor and Industries (WSDLI)<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="Wessex Institute for Health Research and Development" >Wessex Institute for Health Research and Development<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="West Midlands Health Technology Assessment Collaboration" >West Midlands Health Technology Assessment Collaboration<br>
+                                                        <input type="checkbox" name="filter-publisher-check" value="WorkSafeBC" >WorkSafeBC<br>
+                                                    </div>
+                        <a href="#" name="filter-source-other-apply">Apply</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </li>
+    <li class="border-bottom border-table card-list-filter">
+                <a class="sidebar-link" href="#filterCountry" data-toggle="collapse" data-target="#filterCountry" aria-expanded="false" aria-controls="filterCountry">Country</a>
+        <div id="filterCountry" class="collapse ">
+            <ul class="inside filter">
+                                                                    <li>
+                    <a href="#" id="filter-country-other" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Customize</a>
+                    <div class="dropdown-menu scrollable-menu" aria-labelledby="filter-country-other">
+                        <div class="scrollable-menu-content">
+                            <input type="checkbox" name="filter-country-check" value="Afghanistan" >Afghanistan<br>
+                            <input type="checkbox" name="filter-country-check" value="Albania" >Albania<br>
+                            <input type="checkbox" name="filter-country-check" value="Algeria" >Algeria<br>
+                            <input type="checkbox" name="filter-country-check" value="Andorra" >Andorra<br>
+                            <input type="checkbox" name="filter-country-check" value="Antigua and Barbuda" >Antigua and Barbuda<br>
+                            <input type="checkbox" name="filter-country-check" value="Argentina" >Argentina<br>
+                            <input type="checkbox" name="filter-country-check" value="Armenia" >Armenia<br>
+                            <input type="checkbox" name="filter-country-check" value="Australia" >Australia<br>
+                            <input type="checkbox" name="filter-country-check" value="Austria" >Austria<br>
+                            <input type="checkbox" name="filter-country-check" value="Azerbaijan" >Azerbaijan<br>
+                            <input type="checkbox" name="filter-country-check" value="Bahamas" >Bahamas<br>
+                            <input type="checkbox" name="filter-country-check" value="Bahrain" >Bahrain<br>
+                            <input type="checkbox" name="filter-country-check" value="Bangladesh" >Bangladesh<br>
+                            <input type="checkbox" name="filter-country-check" value="Barbados" >Barbados<br>
+                            <input type="checkbox" name="filter-country-check" value="Belarus" >Belarus<br>
+                            <input type="checkbox" name="filter-country-check" value="Belgium" >Belgium<br>
+                            <input type="checkbox" name="filter-country-check" value="Belize" >Belize<br>
+                            <input type="checkbox" name="filter-country-check" value="Benin" >Benin<br>
+                            <input type="checkbox" name="filter-country-check" value="Bhutan" >Bhutan<br>
+                            <input type="checkbox" name="filter-country-check" value="Bolivia" >Bolivia<br>
+                            <input type="checkbox" name="filter-country-check" value="Bosnia and Herzegovina" >Bosnia and Herzegovina<br>
+                            <input type="checkbox" name="filter-country-check" value="Botswana" >Botswana<br>
+                            <input type="checkbox" name="filter-country-check" value="Brazil" >Brazil<br>
+                            <input type="checkbox" name="filter-country-check" value="Brunei" >Brunei<br>
+                            <input type="checkbox" name="filter-country-check" value="Bulgaria" >Bulgaria<br>
+                            <input type="checkbox" name="filter-country-check" value="Burkina Faso" >Burkina Faso<br>
+                            <input type="checkbox" name="filter-country-check" value="Burundi" >Burundi<br>
+                            <input type="checkbox" name="filter-country-check" value="Cambodia" >Cambodia<br>
+                            <input type="checkbox" name="filter-country-check" value="Cameroon" >Cameroon<br>
+                            <input type="checkbox" name="filter-country-check" value="Canada" >Canada<br>
+                            <input type="checkbox" name="filter-country-check" value="Cape Verde" >Cape Verde<br>
+                            <input type="checkbox" name="filter-country-check" value="Central African Republic" >Central African Republic<br>
+                            <input type="checkbox" name="filter-country-check" value="Chad" >Chad<br>
+                            <input type="checkbox" name="filter-country-check" value="Chile" >Chile<br>
+                            <input type="checkbox" name="filter-country-check" value="China" >China<br>
+                            <input type="checkbox" name="filter-country-check" value="Colombia" >Colombia<br>
+                            <input type="checkbox" name="filter-country-check" value="Comoros" >Comoros<br>
+                            <input type="checkbox" name="filter-country-check" value="Congo" >Congo<br>
+                            <input type="checkbox" name="filter-country-check" value="Costa Rica" >Costa Rica<br>
+                            <input type="checkbox" name="filter-country-check" value="Cote dIvoire" >Cote dIvoire<br>
+                            <input type="checkbox" name="filter-country-check" value="Croatia" >Croatia<br>
+                            <input type="checkbox" name="filter-country-check" value="Cuba" >Cuba<br>
+                            <input type="checkbox" name="filter-country-check" value="Cyprus" >Cyprus<br>
+                            <input type="checkbox" name="filter-country-check" value="Czech Republic" >Czech Republic<br>
+                            <input type="checkbox" name="filter-country-check" value="Denmark" >Denmark<br>
+                            <input type="checkbox" name="filter-country-check" value="Djibouti" >Djibouti<br>
+                            <input type="checkbox" name="filter-country-check" value="Dominica" >Dominica<br>
+                            <input type="checkbox" name="filter-country-check" value="Dominican Republic" >Dominican Republic<br>
+                            <input type="checkbox" name="filter-country-check" value="East Timor" >East Timor<br>
+                            <input type="checkbox" name="filter-country-check" value="Ecuador" >Ecuador<br>
+                            <input type="checkbox" name="filter-country-check" value="Egypt" >Egypt<br>
+                            <input type="checkbox" name="filter-country-check" value="El Salvador" >El Salvador<br>
+                            <input type="checkbox" name="filter-country-check" value="Equatorial Guinea" >Equatorial Guinea<br>
+                            <input type="checkbox" name="filter-country-check" value="Eritrea" >Eritrea<br>
+                            <input type="checkbox" name="filter-country-check" value="Estonia" >Estonia<br>
+                            <input type="checkbox" name="filter-country-check" value="Ethiopia" >Ethiopia<br>
+                            <input type="checkbox" name="filter-country-check" value="Fiji" >Fiji<br>
+                            <input type="checkbox" name="filter-country-check" value="Finland" >Finland<br>
+                            <input type="checkbox" name="filter-country-check" value="France" >France<br>
+                            <input type="checkbox" name="filter-country-check" value="Gabon" >Gabon<br>
+                            <input type="checkbox" name="filter-country-check" value="Gambia" >Gambia<br>
+                            <input type="checkbox" name="filter-country-check" value="Georgia" >Georgia<br>
+                            <input type="checkbox" name="filter-country-check" value="Germany" >Germany<br>
+                            <input type="checkbox" name="filter-country-check" value="Ghana" >Ghana<br>
+                            <input type="checkbox" name="filter-country-check" value="Greece" >Greece<br>
+                            <input type="checkbox" name="filter-country-check" value="Grenada" >Grenada<br>
+                            <input type="checkbox" name="filter-country-check" value="Guatemala" >Guatemala<br>
+                            <input type="checkbox" name="filter-country-check" value="Guinea" >Guinea<br>
+                            <input type="checkbox" name="filter-country-check" value="Guinea-Bissau" >Guinea-Bissau<br>
+                            <input type="checkbox" name="filter-country-check" value="Guyana" >Guyana<br>
+                            <input type="checkbox" name="filter-country-check" value="Haiti" >Haiti<br>
+                            <input type="checkbox" name="filter-country-check" value="Honduras" >Honduras<br>
+                            <input type="checkbox" name="filter-country-check" value="Hong Kong" >Hong Kong<br>
+                            <input type="checkbox" name="filter-country-check" value="Hungary" >Hungary<br>
+                            <input type="checkbox" name="filter-country-check" value="Iceland" >Iceland<br>
+                            <input type="checkbox" name="filter-country-check" value="India" >India<br>
+                            <input type="checkbox" name="filter-country-check" value="Indonesia" >Indonesia<br>
+                            <input type="checkbox" name="filter-country-check" value="Iran" >Iran<br>
+                            <input type="checkbox" name="filter-country-check" value="Iraq" >Iraq<br>
+                            <input type="checkbox" name="filter-country-check" value="Ireland" >Ireland<br>
+                            <input type="checkbox" name="filter-country-check" value="Israel" >Israel<br>
+                            <input type="checkbox" name="filter-country-check" value="Italy" >Italy<br>
+                            <input type="checkbox" name="filter-country-check" value="Jamaica" >Jamaica<br>
+                            <input type="checkbox" name="filter-country-check" value="Japan" >Japan<br>
+                            <input type="checkbox" name="filter-country-check" value="Jordan" >Jordan<br>
+                            <input type="checkbox" name="filter-country-check" value="Kazakhstan" >Kazakhstan<br>
+                            <input type="checkbox" name="filter-country-check" value="Kenya" >Kenya<br>
+                            <input type="checkbox" name="filter-country-check" value="Kiribati" >Kiribati<br>
+                            <input type="checkbox" name="filter-country-check" value="North Korea" >North Korea<br>
+                            <input type="checkbox" name="filter-country-check" value="South Korea" >South Korea<br>
+                            <input type="checkbox" name="filter-country-check" value="Kuwait" >Kuwait<br>
+                            <input type="checkbox" name="filter-country-check" value="Kyrgyzstan" >Kyrgyzstan<br>
+                            <input type="checkbox" name="filter-country-check" value="Laos" >Laos<br>
+                            <input type="checkbox" name="filter-country-check" value="Latvia" >Latvia<br>
+                            <input type="checkbox" name="filter-country-check" value="Lebanon" >Lebanon<br>
+                            <input type="checkbox" name="filter-country-check" value="Lesotho" >Lesotho<br>
+                            <input type="checkbox" name="filter-country-check" value="Liberia" >Liberia<br>
+                            <input type="checkbox" name="filter-country-check" value="Libya" >Libya<br>
+                            <input type="checkbox" name="filter-country-check" value="Liechtenstein" >Liechtenstein<br>
+                            <input type="checkbox" name="filter-country-check" value="Lithuania" >Lithuania<br>
+                            <input type="checkbox" name="filter-country-check" value="Luxembourg" >Luxembourg<br>
+                            <input type="checkbox" name="filter-country-check" value="Macedonia" >Macedonia<br>
+                            <input type="checkbox" name="filter-country-check" value="Madagascar" >Madagascar<br>
+                            <input type="checkbox" name="filter-country-check" value="Malawi" >Malawi<br>
+                            <input type="checkbox" name="filter-country-check" value="Malaysia" >Malaysia<br>
+                            <input type="checkbox" name="filter-country-check" value="Maldives" >Maldives<br>
+                            <input type="checkbox" name="filter-country-check" value="Mali" >Mali<br>
+                            <input type="checkbox" name="filter-country-check" value="Malta" >Malta<br>
+                            <input type="checkbox" name="filter-country-check" value="Marshall Islands" >Marshall Islands<br>
+                            <input type="checkbox" name="filter-country-check" value="Mauritania" >Mauritania<br>
+                            <input type="checkbox" name="filter-country-check" value="Mauritius" >Mauritius<br>
+                            <input type="checkbox" name="filter-country-check" value="Mexico" >Mexico<br>
+                            <input type="checkbox" name="filter-country-check" value="Micronesia" >Micronesia<br>
+                            <input type="checkbox" name="filter-country-check" value="Moldova" >Moldova<br>
+                            <input type="checkbox" name="filter-country-check" value="Monaco" >Monaco<br>
+                            <input type="checkbox" name="filter-country-check" value="Mongolia" >Mongolia<br>
+                            <input type="checkbox" name="filter-country-check" value="Montenegro" >Montenegro<br>
+                            <input type="checkbox" name="filter-country-check" value="Morocco" >Morocco<br>
+                            <input type="checkbox" name="filter-country-check" value="Mozambique" >Mozambique<br>
+                            <input type="checkbox" name="filter-country-check" value="Myanmar" >Myanmar<br>
+                            <input type="checkbox" name="filter-country-check" value="Namibia" >Namibia<br>
+                            <input type="checkbox" name="filter-country-check" value="Nauru" >Nauru<br>
+                            <input type="checkbox" name="filter-country-check" value="Nepal" >Nepal<br>
+                            <input type="checkbox" name="filter-country-check" value="Netherlands" >Netherlands<br>
+                            <input type="checkbox" name="filter-country-check" value="New Zealand" >New Zealand<br>
+                            <input type="checkbox" name="filter-country-check" value="Nicaragua" >Nicaragua<br>
+                            <input type="checkbox" name="filter-country-check" value="Niger" >Niger<br>
+                            <input type="checkbox" name="filter-country-check" value="Nigeria" >Nigeria<br>
+                            <input type="checkbox" name="filter-country-check" value="Norway" >Norway<br>
+                            <input type="checkbox" name="filter-country-check" value="Oman" >Oman<br>
+                            <input type="checkbox" name="filter-country-check" value="Pakistan" >Pakistan<br>
+                            <input type="checkbox" name="filter-country-check" value="Palau" >Palau<br>
+                            <input type="checkbox" name="filter-country-check" value="Panama" >Panama<br>
+                            <input type="checkbox" name="filter-country-check" value="Papua New Guinea" >Papua New Guinea<br>
+                            <input type="checkbox" name="filter-country-check" value="Paraguay" >Paraguay<br>
+                            <input type="checkbox" name="filter-country-check" value="Peru" >Peru<br>
+                            <input type="checkbox" name="filter-country-check" value="Philippines" >Philippines<br>
+                            <input type="checkbox" name="filter-country-check" value="Poland" >Poland<br>
+                            <input type="checkbox" name="filter-country-check" value="Portugal" >Portugal<br>
+                            <input type="checkbox" name="filter-country-check" value="Puerto Rico" >Puerto Rico<br>
+                            <input type="checkbox" name="filter-country-check" value="Qatar" >Qatar<br>
+                            <input type="checkbox" name="filter-country-check" value="Romania" >Romania<br>
+                            <input type="checkbox" name="filter-country-check" value="Russia" >Russia<br>
+                            <input type="checkbox" name="filter-country-check" value="Rwanda" >Rwanda<br>
+                            <input type="checkbox" name="filter-country-check" value="Saint Kitts and Nevis" >Saint Kitts and Nevis<br>
+                            <input type="checkbox" name="filter-country-check" value="Saint Lucia" >Saint Lucia<br>
+                            <input type="checkbox" name="filter-country-check" value="Saint Vincent and the Grenadines" >Saint Vincent and the Grenadines<br>
+                            <input type="checkbox" name="filter-country-check" value="Samoa" >Samoa<br>
+                            <input type="checkbox" name="filter-country-check" value="San Marino" >San Marino<br>
+                            <input type="checkbox" name="filter-country-check" value="Sao Tome and Principe" >Sao Tome and Principe<br>
+                            <input type="checkbox" name="filter-country-check" value="Saudi Arabia" >Saudi Arabia<br>
+                            <input type="checkbox" name="filter-country-check" value="Senegal" >Senegal<br>
+                            <input type="checkbox" name="filter-country-check" value="Serbia and Montenegro" >Serbia and Montenegro<br>
+                            <input type="checkbox" name="filter-country-check" value="Seychelles" >Seychelles<br>
+                            <input type="checkbox" name="filter-country-check" value="Sierra Leone" >Sierra Leone<br>
+                            <input type="checkbox" name="filter-country-check" value="Singapore" >Singapore<br>
+                            <input type="checkbox" name="filter-country-check" value="Slovakia" >Slovakia<br>
+                            <input type="checkbox" name="filter-country-check" value="Slovenia" >Slovenia<br>
+                            <input type="checkbox" name="filter-country-check" value="Solomon Islands" >Solomon Islands<br>
+                            <input type="checkbox" name="filter-country-check" value="Somalia" >Somalia<br>
+                            <input type="checkbox" name="filter-country-check" value="South Africa"  >South Africa<br>
+                            <input type="checkbox" name="filter-country-check" value="Spain" >Spain<br>
+                            <input type="checkbox" name="filter-country-check" value="Sri Lanka" >Sri Lanka<br>
+                            <input type="checkbox" name="filter-country-check" value="Sudan" >Sudan<br>
+                            <input type="checkbox" name="filter-country-check" value="Suriname" >Suriname<br>
+                            <input type="checkbox" name="filter-country-check" value="Swaziland" >Swaziland<br>
+                            <input type="checkbox" name="filter-country-check" value="Sweden" >Sweden<br>
+                            <input type="checkbox" name="filter-country-check" value="Switzerland" >Switzerland<br>
+                            <input type="checkbox" name="filter-country-check" value="Syria" >Syria<br>
+                            <input type="checkbox" name="filter-country-check" value="Taiwan" >Taiwan<br>
+                            <input type="checkbox" name="filter-country-check" value="Tajikistan" >Tajikistan<br>
+                            <input type="checkbox" name="filter-country-check" value="Tanzania" >Tanzania<br>
+                            <input type="checkbox" name="filter-country-check" value="Thailand" >Thailand<br>
+                            <input type="checkbox" name="filter-country-check" value="Togo" >Togo<br>
+                            <input type="checkbox" name="filter-country-check" value="Tonga" >Tonga<br>
+                            <input type="checkbox" name="filter-country-check" value="Trinidad and Tobago" >Trinidad and Tobago<br>
+                            <input type="checkbox" name="filter-country-check" value="Tunisia" >Tunisia<br>
+                            <input type="checkbox" name="filter-country-check" value="Turkey" >Turkey<br>
+                            <input type="checkbox" name="filter-country-check" value="Turkmenistan" >Turkmenistan<br>
+                            <input type="checkbox" name="filter-country-check" value="Tuvalu" >Tuvalu<br>
+                            <input type="checkbox" name="filter-country-check" value="Uganda" >Uganda<br>
+                            <input type="checkbox" name="filter-country-check" value="Ukraine" >Ukraine<br>
+                            <input type="checkbox" name="filter-country-check" value="United Arab Emirates" >United Arab Emirates<br>
+                            <input type="checkbox" name="filter-country-check" value="United Kingdom" >United Kingdom<br>
+                            <input type="checkbox" name="filter-country-check" value="United States" >United States<br>
+                            <input type="checkbox" name="filter-country-check" value="Uruguay" >Uruguay<br>
+                            <input type="checkbox" name="filter-country-check" value="Uzbekistan" >Uzbekistan<br>
+                            <input type="checkbox" name="filter-country-check" value="Vanuatu" >Vanuatu<br>
+                            <input type="checkbox" name="filter-country-check" value="Vatican City" >Vatican City<br>
+                            <input type="checkbox" name="filter-country-check" value="Venezuela" >Venezuela<br>
+                            <input type="checkbox" name="filter-country-check" value="Vietnam" >Vietnam<br>
+                            <input type="checkbox" name="filter-country-check" value="Yemen" >Yemen<br>
+                            <input type="checkbox" name="filter-country-check" value="Zambia" >Zambia<br>
+                            <input type="checkbox" name="filter-country-check" value="Zimbabwe" >Zimbabwe<br>
+                        </div>
+                        <a href="#" name="filter-country-other-apply">Apply</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </li>
+</div>                    </ul>
+    </div>
+</div>
+                    </div>
+                    <div class="col-md-8">
+                            
+<div class="result_container">
+    <h1>Welcome to the international HTA database</h1>
+    <hr>
+    <div class="content">
+        <div class="floatRight">
+            <button id="exportButton" class="btn btn-primary dropdown-toggle export-button" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Export Selected
+            </button>
+            <div class="dropdown-menu" aria-labelledby="exportButton">
+                <a id="exportCSV" class="dropdown-item" href="#">CSV</a>
+                <a id="exportRIS" class="dropdown-item" href="#">RIS</a>
+            </div>
+        </div>
+        <div class="floatLeft">
+            Showing [24864 Records] Selected Records [<span id="selectedCountText">0</span> Hits] <span id="clearAll"> [<a href="#">Clear</a>]</span>
+        </div>
+
+        <div class="table-responsive">
+    <ul class="pagination" role="navigation">
+        
+                    <li class="page-item disabled" aria-disabled="true" aria-label="&laquo; Previous">
+                <span class="page-link" aria-hidden="true">&lsaquo;</span>
+            </li>
+        
+        
+                    
+            
+            
+                                                                        <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+                                                                                <li class="page-item"><a class="page-link" href="https://database.inahta.org?page=2">2</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="https://database.inahta.org?page=3">3</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="https://database.inahta.org?page=4">4</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="https://database.inahta.org?page=5">5</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="https://database.inahta.org?page=6">6</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="https://database.inahta.org?page=7">7</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="https://database.inahta.org?page=8">8</a></li>
+                                                                    
+                            <li class="page-item disabled" aria-disabled="true"><span class="page-link">...</span></li>
+            
+            
+                                
+            
+            
+                                                                        <li class="page-item"><a class="page-link" href="https://database.inahta.org?page=248">248</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="https://database.inahta.org?page=249">249</a></li>
+                                                        
+        
+                    <li class="page-item">
+                <a class="page-link" href="https://database.inahta.org?page=2" rel="next" aria-label="Next &raquo;">&rsaquo;</a>
+            </li>
+            </ul>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th><input id="select-all" type="checkbox"></th>
+                <th><a href="https://database.inahta.org?sort=publish_year&direction=asc" >Year</a> <i class="fa fa-sort"></i></th>
+                <th><a href="https://database.inahta.org?sort=publisher&direction=asc" >Source</a> <i class="fa fa-sort"></i></th>
+                <th><a href="https://database.inahta.org?sort=title&direction=asc" >Title</a> <i class="fa fa-sort"></i></th>
+                            </tr>
+        </thead>
+        
+        <tbody>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34059" ></td>
+                <td align="left">2027&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Health Information and Quality Authority (HIQA)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34059" target="_blank">Health Technology Assessment (HTA) of the transition to, and coordination of, adult healthcare services for individuals with severe neurological impairment</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="33927" ></td>
+                <td align="left">2027&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/33927" target="_blank">[Anxiety and panic disorder: do those affected benefit from the &quot;emotional freedom technique”?]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="33924" ></td>
+                <td align="left">2027&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/33924" target="_blank">[Short frenulum in infants: what are the advantages and disadvantages of frenectomy (cutting the frenulum) compared to, for example, breastfeeding counseling for breastfeeding problems?]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="32501" ></td>
+                <td align="left">2027&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Norwegian Medical Products Agency (NOMA)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/32501" target="_blank">[Wearable cardioverter defibrillator (LifeVest) for people with high risk of sudden cardiac arrest: a single technology assessment]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="32203" ></td>
+                <td align="left">2027&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Belgian Health Care Knowledge Centre (KCE)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/32203" target="_blank">Review of new oncology indications for the use of positron emission tomography (PET-scans) (Study 2024-12)</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34234" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Services and Delivery Research programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34234" target="_blank">The use of restrictive practices in the everyday care of people living with dementia in hospital settings: an ethnographic study</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34233" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34233" target="_blank">Validating and updating the OHTS-EGPS model predicting 5-year glaucoma risk among patients with ocular hypertension using electronic medical records: a cohort study</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34232" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34232" target="_blank">Understanding barriers and facilitators of implementing a new assessment and bridging tool to support those at risk of repeat self-harm in prison: the qualitative RAPPS study</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34230" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34230" target="_blank">Diagnostic tools to establish the presence and severity of peripheral arterial disease in people with diabetes: a synopsis of the DM PAD prospective multicentre diagnostic accuracy study</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34229" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Services and Delivery Research programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34229" target="_blank">Implementing artificial intelligence in chest diagnostics for lung disease: a mixed-methods evaluation</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34217" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Health Information and Quality Authority (HIQA)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34217" target="_blank">Protocol for a health technology assessment of modifications to the BreastCheck programme. Workstream 1 (of 2): consideration of screening pathways that incorporate breast density</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34205" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Scientific Advice Unit, avalia-t; The Galician Health Knowledge Agency (ACIS)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34205" target="_blank">[Hugging for pain, depression and anxiety relief]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34204" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Scientific Advice Unit, avalia-t; The Galician Health Knowledge Agency (ACIS)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34204" target="_blank">[Art therapy: visual arts in the management of mild cognitive impairment]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34203" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34203" target="_blank">BEhavioural Weight Management: COMponents of Effectiveness (BE:COME) Synopsis</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34202" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34202" target="_blank">The work and vocational advice intervention for adults in full or part-time employment: a synopsis of the WAVE feasibility study and RCT</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34201" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Services and Delivery Research programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34201" target="_blank">‘Tired of spinning plates’: Synopsis of mixed methods exploration of mental health experiences of adult/older carers of adults with learning disabilities</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34200" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34200" target="_blank">Prophylactic antibiotics to prevent chest infections in children with neurological impairment: the PARROT RCT</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34199" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34199" target="_blank">Surgery versus non-surgical splint treatment for proximal phalanx shaft finger fractures in adults: the POINT Randomised Controlled Trial</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34198" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34198" target="_blank">Implementation of eye screening programmes for patients with diabetes: a systematic map of evidence from five countries</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34197" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34197" target="_blank">Identifying the best diagnostic test for ovarian cancer – synopsis of Refining Ovarian Cancer Test accuracy Scores (ROCkeTS) research</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34196" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34196" target="_blank">Seizure prophylaxis in glioma surgery: a synopsis from the SPRING RCT</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34194" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34194" target="_blank">[Nirogacestat (desmoid tumour) – Assessment according to §35a (para. 1, sentence 11) Social Code Book V]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34177" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34177" target="_blank">[Daratumumab (smouldering multiple myeloma) – Addendum to Project A25-109]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34176" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34176" target="_blank">[Daratumumab (newly diagnosed multiple myeloma, ineligible for stem cell transplant) – Addendum to Project A25-108]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34175" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34175" target="_blank">[Lecanemab (early Alzheimer’s disease) – Addendum to Project A25-111]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34174" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34174" target="_blank">[Selumetinib (plexiform neurofibromas in adults with neurofibromatosis type 1) – Benefit assessment according to §35a Social Code Book V]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34173" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34173" target="_blank">[Selumetinib (plexiform neurofibromas in neurofibromatosis type 1, &gt;= 3 to &lt; 18 years) – Benefit assessment according to §35a Social Code Book V]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34172" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34172" target="_blank">[Tezepelumab (chronic rhinosinusitis with nasal polyps) – Benefit assessment according to §35a Social Code Book V]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34171" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34171" target="_blank">[Diflunisal (hereditary transthyretin amyloidosis with polyneuropathy) – Benefit assessment according to §35a Social Code Book V]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34170" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34170" target="_blank">[Momelotinib (myelofibrosis) – Benefit assessment according to §35a Social Code Book V]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34169" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34169" target="_blank">[Avapritinib (gastrointestinal stromal tumours) – Benefit assessment according to §35a Social Code Book V]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34168" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34168" target="_blank">[Sebetralstat (acute attacks of hereditary angioedema ≥ 12 years) – Assessment according to §35a (para. 1, sentence 11) Social]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34166" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34166" target="_blank">[Vutrisiran (transthyretin amyloidosis with cardiomyopathy) – Addendum to Project A25-93]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34157" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34157" target="_blank">[Olezarsen (chylomicronaemia syndrome) – Assessment according to §35a (para. 1, sentence 11) Social Code Book V]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34156" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34156" target="_blank">[Asciminib (CML, first- and second-line treatment) – Benefit assessment according to §35a Social Code Book V]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34155" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34155" target="_blank">[Pembrolizumab (head and neck squamous cell carcinoma) – Benefit assessment according to §35a Social Code Book V]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34154" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34154" target="_blank">[Vorasidenib (astrocytoma or oligodendroglioma) – Assessment according to §35a (para. 1, sentence 11) Social Code Book V]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34153" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34153" target="_blank">[Percutaneously implanted interatrial shunt for the treatment of heart failure with reduced left ventricular ejection fraction (LVEF &lt; 40 %) – Addendum to Project N24-04]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34152" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34152" target="_blank">[Vimseltinib (symptomatic tenosynovial giant cell tumours) – Assessment according to §35a (para. 1, sentence 11) Social Code Book V]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34151" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34151" target="_blank">[Avapritinib (advanced systemic mastocytosis) – Benefit assessment according to §35a Social Code Book V]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34150" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34150" target="_blank">[Avapritinib (indolent systemic mastocytosis) – Benefit assessment according to §35a Social Code Book V]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34149" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34149" target="_blank">[Donanemab (early Alzheimer’s disease) – Benefit assessment according to §35a Social Code Book V]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34148" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34148" target="_blank">[Durvalumab (small cell lung cancer, non-advanced) – Addendum to Project A25-96]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34136" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34136" target="_blank">Removal of small fibroids and polyps in patients with infertility and recurrent miscarriage: The HELP Fertility? RCT</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34135" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34135" target="_blank">[Targeted lung denervation using catheter ablation in patients with moderate to severe chronic obstructive pulmonary disease that cannot be treated or cannot be adequately treated with medication]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34134" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen (IQWiG)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34134" target="_blank">[Early detection of Alzheimer’s dementia: ethical, social, legal and organizational aspects of early diagnostic testing for asymptomatic individuals]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34133" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34133" target="_blank">Views on outpatient paracentesis and GnRH antagonists for ovarian hyperstimulation syndrome: a qualitative study of patients and healthcare professionals</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34130" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34130" target="_blank">Effectiveness of polyhexanide, chlorhexidine with neomycin and mupirocin for nasal methicillin-resistant Staphylococcus aureus (MRSA) decolonisation: non-inferiority RCT (TIDE)</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34129" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Services and Delivery Research programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34129" target="_blank">Digital alerting to improve sepsis detection and patient outcomes in NHS Trusts: a multi-methods study</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34128" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34128" target="_blank">Clinical and cost-effectiveness of eculizumab withdrawal in atypical haemolytic uraemic syndrome: the SETS aHUS multi-centre, open-label, prospective and single-arm study</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34122" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">National Institute for Health and Care Excellence (NICE)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34122" target="_blank">Cerliponase alfa for treating neuronal ceroid lipofuscinosis type 2. NICE highly specialised technologies guidance 34</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34121" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">National Institute for Health and Care Excellence (NICE)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34121" target="_blank">Pulmonary artery pressure technologies for remote monitoring of chronic heart failure. NICE HealthTech guidance 769</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34120" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">National Institute for Health and Care Excellence (NICE)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34120" target="_blank">Transcatheter tricuspid valve implantation for symptomatic severe tricuspid regurgitation. NICE HealthTech guidance 771</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34119" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">National Institute for Health and Care Excellence (NICE)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34119" target="_blank">Leadless cardiac pacemaker implantation for bradyarrhythmias. NICE HealthTech guidance 770</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34118" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">National Institute for Health and Care Excellence (NICE)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34118" target="_blank">Targeted-release budesonide for treating primary IgA nephropathy. NICE technology appraisal guidance 1128</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34117" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">National Institute for Health and Care Excellence (NICE)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34117" target="_blank">Nivolumab with chemotherapy for neoadjuvant treatment then alone for adjuvant treatment of resectable non-small-cell lung cancer. NICE technology appraisal guidance 1127</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34116" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">National Institute for Health and Care Excellence (NICE)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34116" target="_blank">Talazoparib with enzalutamide for untreated hormone-relapsed metastatic prostate cancer. NICE technology appraisal guidance 1130</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34115" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">National Institute for Health and Care Excellence (NICE)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34115" target="_blank">Obinutuzumab with mycophenolate mofetil for treating lupus nephritis. NICE technology appraisal guidance 1131</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34114" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">National Institute for Health and Care Excellence (NICE)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34114" target="_blank">Niraparib for maintenance treatment of advanced ovarian, fallopian tube and peritoneal cancer after response to first-line platinum-based chemotherapy. NICE technology appraisal guidance 1129</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34113" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">National Institute for Health and Care Excellence (NICE)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34113" target="_blank">Ruxolitinib for treating moderate to severe chronic graft versus host disease after an allogeneic stem cell transplant in people 28 days to 17 years (terminated appraisal). NICE technology appraisal guidance 1132</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34112" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">National Institute for Health and Care Excellence (NICE)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34112" target="_blank">Dupilumab for treating severe chronic rhinosinusitis with nasal polyps. NICE technology appraisal guidance 1134</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34111" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">National Institute for Health and Care Excellence (NICE)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34111" target="_blank">Belantamab mafodotin with pomalidomide and dexamethasone for previously treated multiple myeloma. NICE technology appraisal guidance 1133</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34110" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">National Institute for Health and Care Excellence (NICE)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34110" target="_blank">Baloxavir marboxil for treating and preventing influenza in children 1 to 11 years (terminated appraisal). NICE technology appraisal guidance 1135</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34109" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">National Institute for Health and Care Excellence (NICE)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34109" target="_blank">Canagliflozin for treating type 2 diabetes in people 10 to 17 years (terminated appraisal). NICE technology appraisal guidance 1137</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34108" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">National Institute for Health and Care Excellence (NICE)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34108" target="_blank">Bevacizumab (originator and biosimilars) with fluoropyrimidine-based chemotherapy for metastatic colorectal cancer. NICE technology appraisal guidance 1136</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34107" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Health Information and Quality Authority (HIQA)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34107" target="_blank">Protocol for the health technology assessment of the introduction of population-based screening for familial hypercholesterolaemia in children</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34106" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Scientific Advice Unit, avalia-t; The Galician Health Knowledge Agency (ACIS)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34106" target="_blank">[Irreversible electroporation for treating colorectal cancer liver metastases]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34105" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Health Information and Quality Authority (HIQA)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34105" target="_blank">The management of acute asthma attack in adults</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34104" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Scientific Advice Unit, avalia-t; The Galician Health Knowledge Agency (ACIS)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34104" target="_blank">[Endoscopic stapler for distal pancreatectomy]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34103" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Health Information and Quality Authority (HIQA)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34103" target="_blank">Paediatric early warning system in emergency settings</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34102" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Scientific Advice Unit, avalia-t; The Galician Health Knowledge Agency (ACIS)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34102" target="_blank">[New surgical robotics platform for digestive oncology surgery]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34094" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut national d&#039;excellence en sante et en services sociaux (INESSS)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34094" target="_blank">[Frequent use of emergency departments by individuals with mental disorders]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34093" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut national d&#039;excellence en sante et en services sociaux (INESSS)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34093" target="_blank">[Characteristics of mental health outreach actions carried out for individuals or  populations in situations of vulnerability]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34092" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">HTA Region Stockholm</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34092" target="_blank">[Interventions for preventing severe myopia in children: a systematic review of benefits and harms, cost-effectiveness, and cost analysis]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34091" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Services and Delivery Research programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34091" target="_blank">Ethnic differences in injury mortality rates among adult emergency healthcare service users in high-income countries: a scoping review</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34090" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34090" target="_blank">Mapping components of behavioural weight management interventions using electronic survey and component selection by expert consensus: the BE:COME Study</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34089" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Services and Delivery Research programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34089" target="_blank">Utilisation of the support workforce in diagnostic imaging: a mixed-methods investigation</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34088" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34088" target="_blank">Intravenous lidocaine for gastrointestinal recovery after colorectal surgery: the ALLEGRO placebo-controlled randomised trial and cost-effectiveness analysis</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34087" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34087" target="_blank">Magnetic resonance enterography to predict disabling disease in newly diagnosed Crohn’s disease: the METRIC-EF multivariable prediction model, multicentre diagnostic inception cohort study</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34086" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34086" target="_blank">Enzyme replacement therapy compared with best supportive care for the treatment of Pompe Disease: a systematic review and network meta-analysis</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34085" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Services and Delivery Research programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34085" target="_blank">Asymptomatic testing compared with standard care of the care home staff in shaping care home COVID-19 testing policy: the VIVALDI-CT pragmatic cluster RCT (VIVALDI-CT)</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34084" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">HTA South</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34084" target="_blank">[Clinical benefit of photon-counting computed tomorgraphy - a systematic review and assessment of medical, economical, ethical and organisational aspects]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34083" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34083" target="_blank">Laparoscopic hysterectomy versus open abdominal hysterectomy for women with a benign gynaecological condition: the LAVA RCT</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34082" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Services and Delivery Research programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34082" target="_blank">Developing research resources and minimum data set for care homes’ adoption and use (DACHA)</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34081" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34081" target="_blank">The clinical and cost-effectiveness of improving sleep via carer delivered strategies in people with dementia: the DREAMS START parallel multi-centre RCT</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34080" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34080" target="_blank">The clinical and cost-effectiveness of paravertebral blockade versus thoracic epidural blockade in reducing chronic post-thoracotomy pain: TOPIC2 RCT synopsis</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34079" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34079" target="_blank">Conservative versus liberal oxygenation targets in critically ill children: the Oxy-PICU RCT</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34078" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34078" target="_blank">Azithromycin therapy for prevention of chronic lung disease of prematurity (AZTEC): a randomised placebo-controlled trial</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34077" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34077" target="_blank">Outcome after Selective early treatment for Closure of patent ductus ARteriosus in preterm babies, a multicentre, masked, randomised placebo-controlled parallel group trial (Baby-OSCAR trial)</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34076" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34076" target="_blank">Artificial Intelligence technologies for assessing skin lesions for referral on the urgent suspected cancer pathway to detect benign lesions and reduce secondary care specialist appointments: early value assessment</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34075" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34075" target="_blank">Gabapentin as an adjunct to multimodal pain regimens in surgical patients: the GAP placebo-controlled RCT and economic evaluation</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34074" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34074" target="_blank">Establishing the safety of waterbirth for mothers and their babies: the POOL cohort study with nested qualitative component</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34073" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">NIHR Health Technology Assessment programme</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34073" target="_blank">A pragmatic, multicentre, placebo-controlled, 3-arm, double-blinded, randomised controlled trial, incorporating an internal pilot, to determine the role of bronchodilators in preventing exacerbations of bronchiectasis</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34071" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut national d&#039;excellence en sante et en services sociaux (INESSS)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34071" target="_blank">[Care and services models for youth with serious behavioural disorders and mental  health issues]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34070" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut national d&#039;excellence en sante et en services sociaux (INESSS)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34070" target="_blank">[Portrait of prehospital trauma triage in Québec (2013-2023) - Evaluation of the implementation of the Québec prehospital trauma triage scale (EQTPT)]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34069" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut national d&#039;excellence en sante et en services sociaux (INESSS)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34069" target="_blank">[Appropriate use of laboratory tests – (1-3)-β-D-glucan serum testing]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34067" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut national d&#039;excellence en sante et en services sociaux (INESSS)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34067" target="_blank">[Drug costs – tracking trends in drug spending in Quebec from 2020 to 2025]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34066" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut national d&#039;excellence en sante et en services sociaux (INESSS)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34066" target="_blank">[Repetitive transcranial magnetic stimulation for treatment-resistant depression in adults: effectiveness, safety and efficiency]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34065" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Institut national d&#039;excellence en sante et en services sociaux (INESSS)</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34065" target="_blank">[Management of incidental imaging findings – pancreas]</a></td>
+                            </tr>
+                        <tr>
+                <td><input class="select_article_checkbox" type="checkbox" name="selected-article" value="34064" ></td>
+                <td align="left">2026&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td align="left">Washington Singer Press</td>
+                <td align="left"><a class="article_link" href="https://database.inahta.org/article/34064" target="_blank">test record #3</a></td>
+                            </tr>
+                    </tbody>
+    </table>
+    <ul class="pagination" role="navigation">
+        
+                    <li class="page-item disabled" aria-disabled="true" aria-label="&laquo; Previous">
+                <span class="page-link" aria-hidden="true">&lsaquo;</span>
+            </li>
+        
+        
+                    
+            
+            
+                                                                        <li class="page-item active" aria-current="page"><span class="page-link">1</span></li>
+                                                                                <li class="page-item"><a class="page-link" href="https://database.inahta.org?page=2">2</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="https://database.inahta.org?page=3">3</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="https://database.inahta.org?page=4">4</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="https://database.inahta.org?page=5">5</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="https://database.inahta.org?page=6">6</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="https://database.inahta.org?page=7">7</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="https://database.inahta.org?page=8">8</a></li>
+                                                                    
+                            <li class="page-item disabled" aria-disabled="true"><span class="page-link">...</span></li>
+            
+            
+                                
+            
+            
+                                                                        <li class="page-item"><a class="page-link" href="https://database.inahta.org?page=248">248</a></li>
+                                                                                <li class="page-item"><a class="page-link" href="https://database.inahta.org?page=249">249</a></li>
+                                                        
+        
+                    <li class="page-item">
+                <a class="page-link" href="https://database.inahta.org?page=2" rel="next" aria-label="Next &raquo;">&rsaquo;</a>
+            </li>
+            </ul>
+
+</div>    </div>
+</div>
+                    </div>
+                    <div class="col-md-1"></div>
+            </main>
+
+        </div>
+        <footer class="footer row">
+            <div style="width:100%">
+    <div style="padding:1rem;float:right;">
+        
+        <a href="https://database.inahta.org/contact/report">Report an Error</a>
+    </div>
+</div>
+        </footer>
+    </body>
+</html>
