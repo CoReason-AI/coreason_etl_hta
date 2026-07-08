@@ -1,0 +1,10 @@
+dlt
+beautifulsoup4
+requests
+urllib3
+polars
+dbt-postgres
+pydantic
+pytest
+responses
+ruff

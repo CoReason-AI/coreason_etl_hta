@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: bronze
+    description: "Raw data loaded by dlt"
+    tables:
+      - name: coreason_etl_hta_bronze_inahta_assessments
+        description: "Raw INAHTA assessment metadata scraped from database.inahta.org"
